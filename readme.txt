@@ -38,10 +38,10 @@ We can use multiple modules to call a different endpoint such as:
 
         routing {
             get("/") {
-                call.respondText("Hello World!")
+                call.respondText("Some Text!")
             }
             get("/book") {
-                call.respondText { "Hello World! Version 2" }
+                call.respondText { "Some Text! Version 2" }
             }
         }
     }
@@ -49,8 +49,8 @@ We can use multiple modules to call a different endpoint such as:
     OR
     fun Application.moduleTwo() {
         routing {
-            get("/book") {
-                call.respondText { "Hello World! Version 2" }
+            get("/endpoint") {
+                call.respondText { "Some Text! Version 2" }
             }
         }
     }
@@ -61,3 +61,41 @@ We can use multiple modules to call a different endpoint such as:
         }
 
 PLUGINS:
+What is a Plugin in a context of ktor framework?
+    - A certain functionality which we can use out of the box inside a ktor project.
+        Different Plugins Available:
+            1) Serialization
+            2) Encoding
+            3) HTTP Headers
+            4) Cookies
+            5) Logging
+            7) Auth
+            ETC...
+
+Structure:
+    Basic:
+    Client -> Request -> Routing -> App Logic -> Server -> Response -> Client
+    Routing Plugins:
+    Client -> Request -> Routing -> Plugin 2 -> Handler -> Plugin 3 -> Server -> Response -> Client
+
+    Example:
+
+    //Installs Plugins into our Ktor Project
+    fun Application.configureRouting() {
+    install(Routing) {
+            get("/") {
+                call.respondText("Hello World!")
+            }
+            get("/book") {
+                call.respondText { "Hello World! Version 2" }
+            }
+        }
+    }
+
+    //Installs Logging Plugins in our Ktor Project, and if an endpoint is called, the event will be logged as a TRACE and an HTTP log.
+    fun Application.configureRouting() {
+    install(CallLogging)
+        get("/") {
+            call.respondText("Hello World!")
+        }
+    }

@@ -8,6 +8,7 @@ import io.ktor.server.request.*
 
 fun Application.configureRouting() {
 
+    /** Plugin, Called get function to declare an endpoint */
     routing {
         get("/") {
             call.respondText("Hello World!")
@@ -16,4 +17,14 @@ fun Application.configureRouting() {
             call.respondText { "Hello World! Version 2" }
         }
     }
+
+    /** Installs Plugins into our Ktor Project */
+    /*install(Routing) {
+        get("/") {
+            call.respondText("Hello World!")
+        }
+        get("/book") {
+            call.respondText { "Hello World! Version 2" }
+        }
+    }*/
 }
