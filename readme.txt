@@ -129,3 +129,73 @@ Testing Endpoints with POSTMAN:
             {{localhost}}/someEndpoint
             "GET"
             {{baseURL}}/someEndpoint
+
+REQUESTS/RESPONSES;
+    We can also call an endpoint in a different way by using a routing method
+    fun Application.configureRouting() {
+
+        /** Plugin, Called get function to declare an endpoint */
+        routing {
+            route(path = "/get/api/v1/httpMethod", method = HttpMethod.Get) {
+                handle {
+                    call.respondText("Test Routing Path")
+                }
+            }
+        }
+    }
+
+    So, inside our Postman call, we would have a request to call this endpoint as shown below:
+    Format:
+    VARIABLE:      localHost
+    INITIAL VALUE: localhost:8080
+
+    Postman:
+    {{localHost}}/get/api/v1/httpMethod
+    Output:
+    "Test Routing Path"
+
+    In doing a client sample call (example) we can request some variable from them and return that variable back to them
+    get("/get/api/v1/users/{username}") {
+                val username = call.parameters["username"]
+                call.respondText("Greetings, $username")
+    }
+
+    Postman:
+        {{localHost}}/get/api/v1/users/{username}
+        Output:
+        Greetings, username
+
+        OR
+        {{localHost}}/get/api/v1/users/Eliasart
+                Output:
+                Greetings, Eliasart
+
+        Extracting HEADER Value]
+        get("/get/api/v1/users/{username}") {
+                    val username = call.parameters["username"]
+                    val header = call.request.headers["Connection"]
+                    call.respondText("Greetings, $username with header: $header")
+        }
+
+    Postman:
+    {{localHost}}/get/api/v1/users/Eliasart
+    Output:
+    Greetings, Eliasart with header: keep-alive
+
+        Custom Header:
+        get("/get/api/v1/users/{username}") {
+           val username = call.parameters["username"]
+               //Custom Header
+               if (username == "Admin") {
+                   call.response.header(name = "CustomHeader", "Admin")
+                   call.respond(message = "Hello Admin", status = HttpStatusCode.OK)
+                }
+    Postman:
+        Headers:
+        KEY:        CustomHeader
+        VALUE:      Admin
+
+        Get Request:
+        {{localHost}}/get/api/v1/users/Admin
+        Output:
+        Hello Admin

@@ -10,11 +10,27 @@ fun Application.configureRouting() {
 
     /** Plugin, Called get function to declare an endpoint */
     routing {
+        route(path = "/get/api/v1/httpMethod", method = HttpMethod.Get) {
+            handle {
+                call.respondText("Test Routing Path")
+            }
+        }
         get("/") {
             call.respondText("Hello World!")
         }
-        get("/book") {
+        get("/helloWorldVersionTwo") {
             call.respondText { "Hello World! Version 2" }
+        }
+        get("/get/api/v1/users/{username}") {
+            val username = call.parameters["username"]
+            //Extracting a Header
+            val header = call.request.headers["Connection"]
+            //Custom Header
+            if (username == "Admin") {
+                call.response.header(name = "CustomHeader", "Admin")
+                call.respond(message = "Hello Admin", status = HttpStatusCode.OK)
+            }
+            call.respondText("Greetings, $username with header: $header")
         }
     }
 
