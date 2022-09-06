@@ -199,3 +199,7 @@ REQUESTS/RESPONSES;
         {{localHost}}/get/api/v1/users/Admin
         Output:
         Hello Admin
+
+CREATING HTTP APIs:
+    Sample:
+        -Refer to this website: https://ktor.io/docs/creating-http-apis.html#customer_routes
