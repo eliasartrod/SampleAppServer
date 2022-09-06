@@ -1,12 +1,8 @@
 package com.appserver
 
-import com.appserver.plugins.configureRouting
-import com.appserver.plugins.configureSerialization
+import com.appserver.routing.configureRouting
+import com.appserver.routing.configureSerialization
 import io.ktor.server.application.*
-import io.ktor.server.engine.*
-import io.ktor.server.netty.*
-import io.ktor.server.response.*
-import io.ktor.server.routing.*
 
 /** Using Engine Main */
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)

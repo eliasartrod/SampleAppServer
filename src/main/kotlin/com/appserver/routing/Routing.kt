@@ -1,4 +1,4 @@
-package com.appserver.plugins
+package com.appserver.routing
 
 import io.ktor.server.routing.*
 import io.ktor.http.*
@@ -9,6 +9,10 @@ fun Application.configureRouting() {
 
     /** Plugin, Called get function to declare an endpoint */
     routing {
+        customerRouting()
+        listOrdersRouting()
+        getOrderRoute()
+        totalizeOrderRoute()
         route(path = "/get/api/v1/httpMethod", method = HttpMethod.Get) {
             handle {
                 call.respondText("Test Routing Path")

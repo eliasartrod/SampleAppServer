@@ -1,4 +1,4 @@
-package com.appserver.plugins
+package com.appserver.routing
 
 import io.ktor.serialization.kotlinx.json.*
 import io.ktor.server.application.*
