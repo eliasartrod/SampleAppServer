@@ -99,3 +99,33 @@ Structure:
             call.respondText("Hello World!")
         }
     }
+
+Testing Endpoints with POSTMAN:
+    Instead of opening up a browser and typing in your "localhost:8080/someEndpoint" everytime, we can create a collection inside Postman
+    for endpoint testing with ease.
+
+    Download Link for Windows 64-bit:
+    https://dl.pstmn.io/download/latest/win64
+
+    Download Link for Mac (Intel Chip):
+    https://dl.pstmn.io/download/latest/osx_64
+
+    Download Link for Mac (Apple Chip):
+    https://dl.pstmn.io/download/latest/osx_arm64
+
+    Download Link for Linux:
+    https://dl.pstmn.io/download/latest/linux64
+
+        -Once POSTMAN has been downloaded, you can create an environment with a baseURL (endpoint baseURL link) and re-use that
+            variable inside your endpoint collection:
+
+            //Local Environment
+            VARIABLE:      localhost or baseURL like http://store-inventory-api.svc.stageEnvironment
+            TYPE:          default
+            INITIAL VALUE: localhost:8080/someEndpoint
+
+            //Inside your collection
+            "GET"
+            {{localhost}}/someEndpoint
+            "GET"
+            {{baseURL}}/someEndpoint
