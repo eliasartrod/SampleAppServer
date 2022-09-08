@@ -17,7 +17,7 @@ fun Application.module() {
 /** Using Embedded Server */
 /*
 fun main() {
-    embeddedServer(Netty, port = 8080) {
+    embeddedServer(Netty, port = 8080, watchPaths = listOf("classes", "resources") {
         module()
     }.start(wait = true)
 }*/
