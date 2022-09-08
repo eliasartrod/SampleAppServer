@@ -45,6 +45,10 @@ dependencies {
     implementation("io.ktor:ktor-server-content-negotiation:$ktor_version")
     implementation("io.ktor:ktor-serialization-kotlinx-json:$ktor_version")
 
+    /** Templating */
+    implementation("io.ktor:ktor-server-html-builder:$ktor_version")
+
+
     /** ktor-server-test-host and kotlin-test-junit allow us to test parts of our Ktor application without having to use
      * the whole HTTP stack in the process. We will use this to define unit tests for our project.*/
     testImplementation("io.ktor:ktor-server-tests-jvm:$ktor_version")
