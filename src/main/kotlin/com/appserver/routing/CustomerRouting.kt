@@ -31,6 +31,12 @@ fun Route.customerRouting() {
                 return@get call.respondText("No customer with id $id", status = HttpStatusCode.NotFound)
                     call.respond(customer)
         }
+        /** Query Parameters, we can add variables inside Postman to print a specific name and age.*/
+        get("/customer/user") {
+            val customerName = call.request.queryParameters["customer"]
+            val age = call.request.queryParameters["age"]
+            call.respondText("Hi, my name is $customerName, I'm $age years old.")
+        }
         /** Next, we implement the option for a client to POST a JSON representation of a client object,
          * which then gets put into our customer storage. Its implementation looks like this:*/
         post {
