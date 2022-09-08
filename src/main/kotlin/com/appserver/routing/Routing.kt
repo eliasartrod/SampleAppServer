@@ -3,6 +3,7 @@ package com.appserver.routing
 import io.ktor.server.routing.*
 import io.ktor.http.*
 import io.ktor.server.application.*
+import io.ktor.server.http.content.*
 import io.ktor.server.response.*
 
 fun Application.configureRouting() {
@@ -13,6 +14,11 @@ fun Application.configureRouting() {
         listOrdersRouting()
         getOrderRoute()
         totalizeOrderRoute()
+        /** Static Content*/
+        static {
+            /** Can also call a .txt file or .jpg file and even in a package by calling the package name*/
+            resource("facebook.html")
+        }
         route(path = "/get/api/v1/httpMethod", method = HttpMethod.Get) {
             handle {
                 call.respondText("Test Routing Path")
