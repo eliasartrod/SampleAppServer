@@ -1,11 +1,8 @@
 package com.appserver
 
-import com.appserver.plugins.configureRouting
+import com.appserver.routing.configureRouting
+import com.appserver.routing.configureSerialization
 import io.ktor.server.application.*
-import io.ktor.server.engine.*
-import io.ktor.server.netty.*
-import io.ktor.server.response.*
-import io.ktor.server.routing.*
 
 /** Using Engine Main */
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
@@ -14,12 +11,13 @@ fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 @Suppress("unused") // application.conf references the main function. This annotation prevents the IDE from marking it as unused.
 fun Application.module() {
     configureRouting()
+    configureSerialization()
 }
 
 /** Using Embedded Server */
 /*
 fun main() {
-    embeddedServer(Netty, port = 8080) {
+    embeddedServer(Netty, port = 8080, watchPaths = listOf("classes", "resources") {
         module()
     }.start(wait = true)
 }*/
